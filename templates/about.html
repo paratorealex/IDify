@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+ <main role="main" class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">About</h1>
+      <p class="lead">I made this website to improve my Python and web development skills. The goal of the project was
+          to create a website that can build Spotify playists automatically based on a tracklist from 1001Tracklists.com
+          It works by connecting to a users Spotify account through the Spotify Web API. Then scrapping the given URL
+          for all the tracks listed and creating a playlist of the ones available on Spotify.</p>
+
+         <p class="lead"> While building this project I learned more about web-scraping with BeautifulSoup, data manipulation
+          with Pandas, and the integration of the MongoDB client.</p>
+        <hr class="my-4">
+        <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">View GitHub</a>
+  </p>
+    </div>
+  </main>
+{% endblock %}

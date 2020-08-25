@@ -4,12 +4,9 @@
     <div class="jumbotron">
       <h1>Playlist Create</h1>
     <form action="/userhome" method="POST">
-      <div class="form-group">
-        <label for="url">Url from 1001Tracklists.com</label>
-        <input type="text" name="url" id="url" class="form-control" required>
-        <div class="invalid-feedback">Not a valid URL!</div>
-      </div>
-      <button type="submit" class="btn btn-primary">Create Playlist</button>
+        {{ form.csrf_token }}
+        {{ form.url }}
+        <button type="submit" class="btn btn-primary">Create Playlist</button>
     </form>
     </div>
   </main>

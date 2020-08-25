@@ -3,6 +3,8 @@ import os
 from flask import Flask, request, redirect, session, render_template, url_for
 from webscrape import getTracks
 from pymongo import MongoClient
+from form_model import UrlForm
+
 
 conf = tk.config_from_environment()
 cred = tk.Credentials(*conf)
@@ -26,9 +28,11 @@ def app_factory() -> Flask:
     @app.route('/userhome', methods=['GET', 'POST'])
     def main2():
 
-        if request.method == 'POST':
+        form = UrlForm()
 
-            url = request.form.get("url")
+        if form.validate_on_submit():
+
+            url = form.url.data
 
             user = session.get('user', None)
 
@@ -45,7 +49,7 @@ def app_factory() -> Flask:
                         pl = spotify.playlist_create(user_id=user,
                                                      name=title,
                                                      public=False,
-                                                     description='Created by Setify!')
+                                                     description='Created by Idify!')
 
                         spotify.playlist_add(pl.id, uris=track_uris)
                         return redirect('/created', 307)
@@ -55,11 +59,15 @@ def app_factory() -> Flask:
                     page += f'<h1> {str(e)} </h1>'
                     return page
 
-        return render_template('user_home.html')
+        return render_template('user_home.html', form=form)
 
     @app.route('/giveurl', methods=['GET'])
     def get_url():
         return redirect('/created')
+
+    @app.route('/about', methods=['GET'])
+    def get_about():
+       return render_template('about.html')
 
     @app.route('/created', methods=['GET', 'POST'])
     def playlist_create():
