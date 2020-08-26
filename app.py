@@ -76,6 +76,7 @@ def app_factory() -> Flask:
     @app.route('/login', methods=['GET'])
     def login():
         auth_url = cred.user_authorisation_url(scope=tk.scope.every)
+        session['logged_in'] = True
         return redirect(auth_url, 307)
 
 
@@ -96,6 +97,7 @@ def app_factory() -> Flask:
     def logout():
         uid = session.pop('user', None)
         if uid is not None:
+            session['logged_in'] = False
             users.pop(uid, None)
         return redirect('/', 307)
 

@@ -14,9 +14,13 @@
       <li class="nav-item">
         <a class="nav-link" href="/about">About</a>
       </li>
+      {% if session['logged_in'] %}   
       <li class="nav-item">
         <a class="nav-link" href="/logout">Logout</a>
       </li>
+      {% else %}
+      <!-- Not Logged in -->
+      {% endif %}
     </ul>
   </div>
 </nav>

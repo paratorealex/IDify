@@ -2,10 +2,21 @@
 {% block content %}
   <main role="main" class="container">
     <div class="jumbotron">
-      <h1>Playlist Create</h1>
+      <h1 class="display-4">Playlist Create</h1>
+      <hr class="my-4">
     <form action="/userhome" method="POST">
         {{ form.csrf_token }}
-        {{ form.url }}
+        <label for="url">Enter a URL from <a href= "https://www.1001tracklists.com/">1001Tracklists.com</a></label>
+        <div class="form-field" id="url">{{ form.url(class_ ="form-contol") }}
+          {% if form.url.errors %}
+              <ul class="errors">
+                {% for error in form.url.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+      </div>
+      </br>
         <button type="submit" class="btn btn-primary">Create Playlist</button>
     </form>
     </div>

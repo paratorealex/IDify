@@ -8,7 +8,7 @@
  <form action= "{{ url_for('userhome') }}" method="POST">
 
       {{ form.csrf_token }}
-      {{ URLForm.url }}
+      {{ URLForm.url (class_="form-control) }}
       <button type="submit" class="btn btn-primary">Create Playlist</button>
  </form>
 </body>
